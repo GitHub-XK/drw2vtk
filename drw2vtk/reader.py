@@ -117,6 +117,12 @@ def read_drw(f, db=0):
                 state = 1
             continue
 
+    # When the file is complete, yield the last element
+    coordinates.append(list(map(float, t_prv)))
+    if coordinates:
+        r = _convert(coordinates)
+        yield (ename, r)
+
 
 if __name__ == '__main__':
     from sys import argv
